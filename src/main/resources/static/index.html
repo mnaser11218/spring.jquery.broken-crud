@@ -1,67 +1,116 @@
-<style src="./style.css"></style>
-<script
-        src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-        crossorigin="anonymous"></script><script>
+<!--<style src="./style.css"></style>-->
+<!--<script-->
+<!--        src="https://code.jquery.com/jquery-3.4.1.js"-->
+<!--        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="-->
+<!--        crossorigin="anonymous"></script><script>-->
 
-    class Person {
-        constructor(id, firstName, lastName) {
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-        }
+<!--    class Person {-->
+<!--        constructor(id, firstName, lastName) {-->
+<!--            this.id = id;-->
+<!--            this.firstName = firstName;-->
+<!--            this.lastName = lastName;-->
+<!--        }-->
+<!--    }-->
+
+<!--    function create() {-->
+<!--        // get the values that are in the input fields-->
+<!--        const personIdElement = document.getElementById("person-id");-->
+<!--        const firstNameElement = document.getElementById("first-name");-->
+<!--        const lastNameElement = document.getElementById("last-name");-->
+
+<!--        const personIdValue = personIdElement.value;-->
+<!--        const firstNameValue = firstNameElement.value;-->
+<!--        const lastNameValue = lastNameElement.value;-->
+<!--        const person = new Person(personIdValue, firstNameValue, lastNameValue);-->
+
+<!--        // call the create function of the spring boot app with the values-->
+<!--        const personData = JSON.stringify(person);-->
+<!--        console.log(personData);-->
+
+<!--        $.ajax({-->
+<!--            type: "POST",-->
+<!--            crossDomain: true,-->
+<!--            headers: {-->
+<!--                'Accept':'application/json',-->
+<!--                'Content-Type':'application/json',-->
+<!--                'Access-Control-Allow-Origin': '*'-->
+<!--            },-->
+<!--            url: "/person-controller/create",-->
+<!--            data: personData,-->
+<!--            dataType: "JSON",-->
+<!--            success: function(response) {-->
+<!--                alert(JSON.stringify(response));-->
+<!--            },-->
+<!--            error: function(request, status, error) {-->
+<!--                console.log("Error while digesting request")-->
+<!--                console.log("Request value ↓")-->
+<!--                console.log(request)-->
+<!--                console.log("Status value ↓")-->
+<!--                console.log(status);-->
+<!--                console.log("Error value ↓")-->
+<!--                console.log(error);                -->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
+
+<!--<form>-->
+<!--    <input id="person-id"> - ID</br>-->
+<!--    <input id="first-name"> - FirstName</br>-->
+<!--    <input id="last-name"> - LastName</br>-->
+<!--    <button onClick="create(event)">Create</button>-->
+<!--    <button onClick="read()">Read</button>-->
+<!--    <button onClick="readAll()">Read All</button>-->
+<!--    <button onClick="update()">Update</button>-->
+<!--    <button onClick="delete()">Delete</button>-->
+<!--</form>-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        width: 60%
+        height: 60%;
     }
+     table{
 
-    function create() {
-        // get the values that are in the input fields
-        const personIdElement = document.getElementById("person-id");
-        const firstNameElement = document.getElementById("first-name");
-        const lastNameElement = document.getElementById("last-name");
+        margin-left: auto;
+        margin-right: auto;
 
-        const personIdValue = personIdElement.value;
-        const firstNameValue = firstNameElement.value;
-        const lastNameValue = lastNameElement.value;
-        const person = new Person(personIdValue, firstNameValue, lastNameValue);
-
-        // call the create function of the spring boot app with the values
-        const personData = JSON.stringify(person);
-        console.log(personData);
-
-        $.ajax({
-            type: "POST",
-            crossDomain: true,
-            headers: {
-                'Accept':'application/json',
-                'Content-Type':'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            url: "/person-controller/create",
-            data: personData,
-            dataType: "JSON",
-            success: function(response) {
-                alert(JSON.stringify(response));
-            },
-            error: function(request, status, error) {
-                console.log("Error while digesting request")
-                console.log("Request value ↓")
-                console.log(request)
-                console.log("Status value ↓")
-                console.log(status);
-                console.log("Error value ↓")
-                console.log(error);                
-            }
-        });
     }
-</script>
+</style>
 
+
+
+
+<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+<script src="./service.js"></script>
 <form>
-    <input id="person-id"> - ID</br>
-    <input id="first-name"> - FirstName</br>
-    <input id="last-name"> - LastName</br>
-    <button onClick="create(event)">Create</button>
-    <button onClick="read()">Read</button>
-    <button onClick="readAll()">Read All</button>
-    <button onClick="update()">Update</button>
-    <button onClick="delete()">Delete</button>
-</form>
+    <input id="id"> - Id
+    <input id="fName"> - FirstName
+    <input id="lName"> - LastName
 
+    <button onclick="read()"> Read Person </button>
+    <button onclick="create()"> Create Person </button>
+    <button onclick="readAll()"> Read All Persons </button>
+    <button onclick="deletePerson()"> Delete Person </button>
+    <button onclick="update()"> Update Person </button>
+
+</form>
+<br>
+<table id="output">
+</table><table id="myTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
