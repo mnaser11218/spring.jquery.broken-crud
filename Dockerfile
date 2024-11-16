@@ -50,4 +50,4 @@ RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 
 # Entry point for running the application
-ENTRYPOINT ["java", "-cp", "app:app/lib/*", "com.example.demo.DemoApplication"]
+ENTRYPOINT ["java", "-cp", "app:app/lib/*", "com.example.demo.DemoApplication.java"]
